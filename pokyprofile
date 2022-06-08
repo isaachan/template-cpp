@@ -1,0 +1,29 @@
+
+
+
+toolchain=/opt/poky/3.2.4/sysroots/core2-64-poky-linux
+target_host=x86_64-poky-linux
+cc_compiler=gcc
+cxx_compiler=g++
+
+#/opt/poky/3.2.4/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux/
+
+[env]
+CONAN_CMAKE_FIND_ROOT_PATH=$toolchain  # Optional, for CMake to find things in that folder
+CONAN_CMAKE_SYSROOT=$toolchain  # Optional, if we want to define sysroot
+CHOST=$target_host
+AR=$target_host-ar
+AS=$target_host-as
+#CC=$target_host-$cc_compiler
+#CXX=$target_host-$cxx_compiler
+CC=/opt/poky/3.2.4/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux/x86_64-poky-linux-gcc
+CXX=/opt/poky/3.2.4/sysroots/x86_64-pokysdk-linux/usr/bin/x86_64-poky-linux/x86_64-poky-linux-g++
+STRIP=$target_host-strip
+
+[settings]
+os=Linux
+arch=x86_64
+compiler=gcc
+compiler.version=10.2
+compiler.libcxx=libstdc++11
+build_type=Release
