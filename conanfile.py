@@ -13,23 +13,30 @@ class AppConan(ConanFile):
     generators = "cmake"
 
     def source(self):
-        self.run("git clone git@github.com:isaachan/template-cpp.git")
-
+        # self.run("git clone git@github.com:isaachan/template-cpp.git")
+        self.run("git clone https://github.com/isaachan/template-cpp.git")
+        # Output to "source" folder
+ 
     def build(self):
         cmake = CMake(self)
         cmake.configure(source_folder="template-cpp")
         cmake.build()
 
     def package(self):
-        self.copy("*.h", dst="include", src="template-cpp")
+        # self.copy("*.h", dst="include", src="template-cpp")
         # self.copy("*hello.lib", dst="lib", keep_path=False)
-        self.copy("app", dst="bin", keep_path=False)
+        # self.copy("app", dst="bin", keep_path=False)
         # self.copy("*.so", dst="lib", keep_path=False)
         # self.copy("*.dylib", dst="lib", keep_path=False)
         # self.copy("*.a", dst="lib", keep_path=False)
+        self.copy("app", dst="bin")
+        self.copy("template-cpp", dst="src")
+
 
     def package_info(self):
-        self.cpp_info.libs = ["app"]
+        self.cpp_info.bindirs = ["bin"]
+        self.cpp_info.srcdirs = ["src"]
+
 
     def deploy(self):
         # Deploy the executables from this eclipse/mosquitto package
