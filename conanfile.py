@@ -39,7 +39,7 @@ class AppConan(ConanFile):
 
     def deploy(self):
         # Deploy the executables from this eclipse/mosquitto package
-        self.copy("*", src="bin", dst="/bin")
+        self.copy("*", src="bin", dst="bin")
         # Deploy the shared libs from this eclipse/mosquitto package
         self.copy("*.so*", src="lib", dst="bin")
         # Deploy all the shared libs from the transitive deps
