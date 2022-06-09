@@ -14,23 +14,20 @@ class AppConan(ConanFile):
 
     def source(self):
         # self.run("git clone git@github.com:isaachan/template-cpp.git")
-        self.run("git clone https://github.com/isaachan/template-cpp.git")
+        self.run("git clone https://github.com/isaachan/template-cpp.git template")
         # Output to "source" folder
  
     def build(self):
         cmake = CMake(self)
-        cmake.configure(source_folder="template-cpp")
+        cmake.configure(source_folder="template")
         cmake.build()
 
     def package(self):
-        # self.copy("*.h", dst="include", src="template-cpp")
-        # self.copy("*hello.lib", dst="lib", keep_path=False)
-        # self.copy("app", dst="bin", keep_path=False)
-        # self.copy("*.so", dst="lib", keep_path=False)
-        # self.copy("*.dylib", dst="lib", keep_path=False)
-        # self.copy("*.a", dst="lib", keep_path=False)
-        self.copy("app", dst="bin")
-        self.copy("template-cpp", dst="src")
+        #self.copy("app", dst="bin")
+        #self.copy("template-cpp", dst="src")
+        cmake = CMake(self)
+        cmake.configure(source_folder="template")
+        cmake.install()
 
 
     def package_info(self):

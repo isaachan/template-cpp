@@ -9,5 +9,5 @@ ADD_EXECUTABLE(${PROJECT_NAME} src/app.cc)
 #TARGET_LINK_LIBRARIES(${PROJECT_NAME} statical-lib-arithmetic)
 #TARGET_LINK_LIBRARIES(${PROJECT_NAME} shared-lib-arithmetic)
 
-install(TARGETS app DESTINATION bin)
+#install(TARGETS app DESTINATION bin)
 
