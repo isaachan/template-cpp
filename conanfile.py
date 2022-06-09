@@ -20,8 +20,8 @@ class AppConan(ConanFile):
     def build(self):
         cmake = CMake(self)
         cmake.configure(source_folder="template")
-        cmake.definitions["CMAKE_C_FLAGS"] = "-s"
-        cmake.definitions["CMAKE_CXX_FLAGS"] = "-s"
+#        cmake.definitions["CMAKE_C_FLAGS"] = "-s"
+#        cmake.definitions["CMAKE_CXX_FLAGS"] = "-s"
         cmake.build()
 
     def package(self):
