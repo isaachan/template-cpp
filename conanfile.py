@@ -25,6 +25,8 @@ class AppConan(ConanFile):
     def package(self):
         #self.copy("app", dst="bin")
         #self.copy("template-cpp", dst="src")
+        
+        # General speaking, if CMake defines installation, it is better to reuse.
         cmake = CMake(self)
         cmake.configure(source_folder="template")
         cmake.install()
@@ -37,7 +39,7 @@ class AppConan(ConanFile):
 
     def deploy(self):
         # Deploy the executables from this eclipse/mosquitto package
-        self.copy("*", src="bin", dst="bin")
+        self.copy("*", src="bin", dst="/bin")
         # Deploy the shared libs from this eclipse/mosquitto package
         self.copy("*.so*", src="lib", dst="bin")
         # Deploy all the shared libs from the transitive deps
