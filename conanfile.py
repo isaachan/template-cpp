@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class AppConan(ConanFile):
     name = "app"
-    version = "0.0.1"
+    version = "0.0.2"
     license = "MIT"
     # url = "https://github.com/hello/hello.git"
     description = "Hello conan"
@@ -30,3 +30,12 @@ class AppConan(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ["app"]
+
+    def deploy(self):
+        # Deploy the executables from this eclipse/mosquitto package
+        self.copy("*", src="bin", dst="bin")
+        # Deploy the shared libs from this eclipse/mosquitto package
+        self.copy("*.so*", src="lib", dst="bin")
+        # Deploy all the shared libs from the transitive deps
+        self.copy_deps("*.so*", src="lib", dst="bin")
+
