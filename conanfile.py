@@ -2,7 +2,7 @@ from conans import ConanFile, CMake, tools
 
 
 class AppConan(ConanFile):
-    name = "app"
+    name = "template-cpp"
     version = "0.0.2"
     license = "MIT"
     # url = "https://github.com/hello/hello.git"
@@ -11,26 +11,18 @@ class AppConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = "shared=False"
     generators = "cmake"
+    exports_sources = "src/*"
 
-    def source(self):
-        # self.run("git clone git@github.com:isaachan/template-cpp.git")
-        self.run("git clone https://github.com/isaachan/template-cpp.git template")
-        # Output to "source" folder
- 
+
     def build(self):
         cmake = CMake(self)
-        cmake.configure(source_folder="template")
-#        cmake.definitions["CMAKE_C_FLAGS"] = "-s"
-#        cmake.definitions["CMAKE_CXX_FLAGS"] = "-s"
+        cmake.configure(source_folder="src")
         cmake.build()
+    #    cmake.install()
 
     def package(self):
-        #self.copy("app", dst="bin")
-        #self.copy("template-cpp", dst="src")
-        
-        # General speaking, if CMake defines installation, it is better to reuse.
         cmake = CMake(self)
-        cmake.configure(source_folder="template")
+        cmake.configure(source_folder="src")
         cmake.install()
 
 
