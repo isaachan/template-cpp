@@ -18,12 +18,13 @@ class AppConan(ConanFile):
         cmake = CMake(self)
         cmake.configure(source_folder="src")
         cmake.build()
-    #    cmake.install()
-
-    def package(self):
-        cmake = CMake(self)
-        cmake.configure(source_folder="src")
         cmake.install()
+
+
+    #def package(self):
+    #    cmake = CMake(self)
+    #    cmake.configure(source_folder="src")
+    #    cmake.install()
 
 
     def package_info(self):
